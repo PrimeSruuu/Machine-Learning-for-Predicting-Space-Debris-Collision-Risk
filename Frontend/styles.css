@@ -1,0 +1,310 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Dark background to avoid white gaps */
+body {
+    background-color: #111;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #111, #1a1a1a);
+    color: white;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #5c9dff;
+}
+
+/* Sidebars */
+.sidebar {
+    position: fixed;
+    top: 50px; /* below header */
+    bottom: 0;
+    width: 250px;
+    background: linear-gradient(180deg, #1f1f1f, #151515);
+    color: #ccc;
+    padding: 20px;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.5);
+}
+
+#control-panel {
+    left: 0;
+    transform: translateX(0);
+}
+
+#details-panel {
+    right: 0;
+    transform: translateX(0);
+}
+
+/* Collapsed states */
+#control-panel.collapsed {
+    transform: translateX(-270px);
+}
+#details-panel.collapsed {
+    transform: translateX(270px);
+}
+
+/* Sidebar content styling */
+.sidebar h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+.control-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #bbb;
+}
+
+input[type="range"],
+select {
+    width: 100%;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #eee;
+    padding: 5px;
+}
+
+/* Risk buttons */
+.risk-filters {
+    display: flex;
+    justify-content: space-between;
+}
+
+.risk-btn {
+    flex: 1;
+    margin: 3px;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: #333;
+    color: #eee;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.risk-btn:hover {
+    background-color: #555;
+}
+
+#predict-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #5c9dff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#predict-btn:hover {
+    background-color: #4a7ecc;
+}
+
+/* Visualization Container */
+#visualization-container {
+    margin-left: 250px;
+    margin-right: 250px;
+    height: calc(100vh - 50px); /* 50px for header */
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#visualization {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.loading-overlay.active {
+    display: flex;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #999;
+    border-top: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+@keyframes spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Stats Container */
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.stat-box {
+    background: #2a2a2a;
+    padding: 10px;
+    flex: 1;
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    min-width: 90px;
+}
+
+.stat-box h3 {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-bottom: 5px;
+}
+.stat-box .satellite-count,
+.stat-box .debris-count,
+.stat-box .high-risk-count {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #5c9dff;
+}
+
+/* Footer */
+footer {
+    background: #111;
+    color: #777;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 0.85rem;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.5);
+}
+
+/* Toggle Buttons (Arrow Icons) */
+.toggle-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background: #333;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 15;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    transition: background-color 0.3s;
+}
+.toggle-btn:hover {
+    background-color: #555;
+}
+
+#toggle-left {
+    left: 10px;
+}
+#toggle-right {
+    right: 10px;
+}
+
+/* Arrow styling using CSS borders */
+.arrow-btn::before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+}
+
+/* Left arrow: points left */
+.arrow-left::before {
+    border-right: 8px solid #fff;
+}
+/* Flip arrow when open */
+.arrow-left.open::before {
+    transform: rotate(180deg);
+}
+
+/* Right arrow: points right */
+.arrow-right::before {
+    border-left: 8px solid #fff;
+}
+/* Flip arrow when open */
+.arrow-right.open::before {
+    transform: rotate(180deg);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 992px) {
+    #visualization-container {
+      margin-left: 0;
+      margin-right: 0;
+    }
+}
+@media screen and (max-width: 576px) {
+    .toggle-btn {
+      width: 30px;
+      height: 30px;
+    }
+}

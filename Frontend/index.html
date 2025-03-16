@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Space Debris Collision Predictor</title>
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Cesium CSS -->
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.93/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">Space Debris Tracker</div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="http://localhost:8501/" target="_blank">Predictions</a></li>
+
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Sidebar Toggle Buttons -->
+    <button id="toggle-left" class="toggle-btn arrow-btn arrow-left"></button>
+    <button id="toggle-right" class="toggle-btn arrow-btn arrow-right"></button>
+
+    <!-- Left Sidebar: Control Panel -->
+    <div id="control-panel" class="sidebar">
+      <h2>Control Panel</h2>
+      <!-- Satellite Selector -->
+      <label for="satellite-select">Select Satellite:</label>
+      <select id="satellite-select">
+        <option value="all">All Satellites</option>
+        <option value="ISS">ISS</option>
+        <option value="NOAA20">NOAA-20</option>
+        <option value="OSTM">OSTM</option>
+      </select>
+      <!-- Time Slider (initially disabled) -->
+      <div class="control-group">
+        <label for="time-slider">Time:</label>
+        <input type="range" id="time-slider" min="0" max="5400" value="0" disabled />
+        <span id="time-display">00:00:00</span>
+      </div>
+    </div>
+
+    <!-- Visualization Container (Cesium Viewer) -->
+    <div id="visualization-container">
+      <div id="visualization"></div>
+      <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
+        <p>Processing data...</p>
+      </div>
+    </div>
+
+    <!-- Right Sidebar: Details Panel -->
+    <div id="details-panel" class="sidebar">
+      <h2>Collision Details</h2>
+      <div id="collision-info">
+        <p>Select an object to view details</p>
+      </div>
+      <div class="stats-container">
+        <div class="stat-box">
+          <h3>Active Satellites</h3>
+          <span class="satellite-count">0</span>
+        </div>
+        <div class="stat-box">
+          <h3>Tracked Debris</h3>
+          <span class="debris-count">0</span>
+        </div>
+        <div class="stat-box">
+          <h3>High Risk Events</h3>
+          <span class="high-risk-count">0</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Space Debris Collision Predictor | Data provided by NASA &amp; Space-Track</p>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Satellite.js for TLE propagation (must be loaded first) -->
+  <script src="https://unpkg.com/satellite.js/dist/satellite.min.js"></script>
+  <!-- Cesium JS -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.93/Build/Cesium/Cesium.js"></script>
+  <!-- Main application JavaScript -->
+  <script src="main.js"></script>
+</body>
+</html>
